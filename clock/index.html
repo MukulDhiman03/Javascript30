@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+            background-image: url('download.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 450px;
+            width: 350px;
+            border: 2px solid red;
+        }
+        
+        .hand {
+            position: absolute;
+            left: 48%;
+        }
+        
+        #hour-hand {
+            top: 35%;
+            height: 30px;
+            width: 5px;
+            background-color: blue;
+            transform-origin: bottom;
+        }
+        
+        #min-hand {
+            top: 28%;
+            height: 60px;
+            width: 8px;
+            background-color: red;
+            transform-origin: bottom;
+        }
+        
+        #sec-hand {
+            top: 15%;
+            height: 120px;
+            width: 5px;
+            background-color: yellow;
+            transform-origin: bottom;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="hand" id="hour-hand"></div>
+            <div class="hand" id="min-hand"></div>
+            <div class="hand" id="sec-hand"></div>
+        </div>
+    </div>
+</body>
+<script>
+    setInterval(setClock, 1000);
+
+    const secHand = document.getElementById('sec-hand');
+    const minHand = document.getElementById('min-hand');
+    const hourHand = document.getElementById('hour-hand');
+
+    function setClock() {
+        let date = new Date();
+        let sec = date.getSeconds();
+        let secRotation = 6 * sec;
+        secHand.style.transform = `rotate(${secRotation}deg)`;
+
+        let min = date.getMinutes();
+        let minRotation = 6 * min;
+        minHand.style.transform = `rotate(${minRotation}deg)`;
+
+        let hour = date.getHours();
+        let hourRotation = (30 * hour) + (min / 2);
+        hourHand.style.transform = `rotate(${hourRotation}deg)`;
+
+        console.log("SEC" + sec);
+        console.log("MIN" + min);
+        console.log("HOUR" + hour);
+    }
+</script>
+
+</html>
